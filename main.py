@@ -1,5 +1,6 @@
-from yhat import Yhat, YhatModel, preprocess
 import os
+
+from yhat import Yhat, YhatModel, preprocess
 
 class HelloWorld(YhatModel):
     @preprocess(in_type=dict, out_type=dict)
@@ -8,5 +9,16 @@ class HelloWorld(YhatModel):
         greeting = "Hello %s!" % me
         return { "greeting": greeting }
 
-yh = Yhat(os.environ["YHAT_USERNAME"], os.environ["YHAT_APIKEY"], "http://sandbox.yhathq.com/")
-print(yh.deploy("HelloWorld", HelloWorld, globals(), True))
+
+username = os.environ["USERNAME"]
+apikey = os.environ["APIKEY"]
+endpoint = os.environ["OPS_ENDPOINT"]
+
+print "%s:%s:%s" % (username, apikey, endpoint,)
+
+yh = Yhat(
+    username,
+    apikey,
+    endpoint
+)
+yh.deploy("HelloWorld", HelloWorld, globals(), sure=True)
