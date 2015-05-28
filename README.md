@@ -29,4 +29,16 @@ $ rm -rf env
 ```
 
 ## Cron
-Same as `virtualenv`
+```bash
+# bootstrap your server
+$ sudo apt-get -y update
+$ sudo apt-get install -y python-software-properties python-pip
+$ sudo pip install yhat
+```
+
+```bash
+# grab this repo
+$ git clone https://github.com/yhat/scienceops-heartbeat/
+# in your crontab
+0 * * * * python hello.py
+```
